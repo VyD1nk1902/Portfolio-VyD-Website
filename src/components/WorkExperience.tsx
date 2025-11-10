@@ -56,12 +56,13 @@ const WorkExperience = () => {
             ></div>
 
             {/* Content Wrapper */}
-            <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 md:gap-8">
+            <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6 md:gap-8">
               <div className="relative shrink-0 w-16 h-16 sm:size-20 md:size-24 transition-transform duration-300 group-hover:-translate-y-2">
                 <Image
                   src={item.img}
                   alt="item.title"
                   fill
+                  sizes="100px"
                   className="object-contain drop-shadow-[0_8px_24px_rgba(113,39,186,0.35)]"
                 />
               </div>
