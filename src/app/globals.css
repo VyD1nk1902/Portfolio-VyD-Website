@@ -28,3 +28,8 @@ body {
   font-family: "Be Vietnam Pro", sans-serif;
   min-height: 100vh;
 }
+
+/* * {
+Debug viewport overflow
+  outline: 1px solid red !important;
+} */
