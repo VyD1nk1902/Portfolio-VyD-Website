@@ -4,7 +4,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="pt-36 pb-24">
+    <section id="home" className="relative pt-36 pb-24">
       <div className="mt-12 md:mt-24">
         {/* Banner headline */}
         <div className="flex flex-col md:flex-row gap-10 items-start md:items-center">
@@ -14,9 +14,10 @@ const HeroSection = () => {
               <Image
                 src="/banner-portfolio.png"
                 alt="banner"
-                className="relative"
+                className="relative w-60 h-80"
                 width={240}
-                height={240}
+                height={320}
+                priority
               />
 
               <div className="select-none pointer-events-none absolute -top-10 -right-6 md:-top-15 md:-right-50 text-xs">
@@ -27,6 +28,7 @@ const HeroSection = () => {
                       fill
                       alt="arrow"
                       className="object-contain scale-x-100 -rotate-6"
+                      sizes="100px"
                     />
                   </div>
                   <div className="-mt-6 md:-mt-18 pl-2 shrink-0 text-">
