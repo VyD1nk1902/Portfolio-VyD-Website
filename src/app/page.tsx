@@ -1,3 +1,4 @@
+import Contact from "@/components/Contact";
 import HeroSection from "@/components/HeroSection";
 import ProjectSection from "@/components/ProjectSection";
 import TechStack from "@/components/TechStack";
@@ -11,10 +12,7 @@ export default function Home() {
       <WorkExperience />
       <TechStack />
       <ProjectSection />
-
-      <div id="contact" className="min-h-screen py-24">
-        Contact
-      </div>
+      <Contact />
     </main>
   );
 }
