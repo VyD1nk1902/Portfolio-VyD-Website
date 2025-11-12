@@ -3,7 +3,7 @@ import { InstagramIcon, GithubIcon, FacebookIcon } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="relative py-24">
+    <section className="relative py-24">
       <div className="flex flex-col">
         <span className="text-2xl md:text-3xl font-semibold text-white/90 mb-7">
           Contact

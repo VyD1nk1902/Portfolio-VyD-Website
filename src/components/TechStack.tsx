@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const TechStack = () => {
   return (
-    <section id="lab" className="relative py-28">
+    <section className="relative py-28">
       <div className="flex flex-col items-center justify-center leading-8">
         <p className="text-white/70 text-[24px]">
           I'm currently looking to join a{" "}
@@ -18,6 +18,7 @@ const TechStack = () => {
             width={1280}
             height={920}
             className="w-full object-contain h-auto"
+            loading="eager"
           />
         </div>
       </div>

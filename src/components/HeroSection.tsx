@@ -4,7 +4,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative pt-36 pb-24">
+    <section className="relative pt-36 pb-24">
       <div className="mt-12 md:mt-24">
         {/* Banner headline */}
         <div className="flex flex-col md:flex-row gap-10 items-start md:items-center">

@@ -3,7 +3,7 @@ import { MousePointerClick, MonitorPlay } from "lucide-react";
 
 const ProjectSection = () => {
   return (
-    <section id="project" className="relative py-28 space-y-24 md:space-y-50">
+    <section className="relative py-28 space-y-24 md:space-y-50">
       <div>
         <div
           className="pointer-events-none absolute right-0 left-1/3 top-8 -z-10 h-[650px] opacity-60 blur-3xl"
@@ -11,7 +11,7 @@ const ProjectSection = () => {
             background:
               "radial-gradient(60% 60% at 60% 40%, rgba(125,58,242,0.65) 0%, rgba(18,8,36,0)90%)",
           }}
-        ></div>
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 items-center">
           {/* Project Content */}
           <div className="relative z-10">

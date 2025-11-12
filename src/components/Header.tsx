@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, MenuSquareIcon, Sigma } from "lucide-react";
+import { Menu, Sigma } from "lucide-react";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 const navData = [
   {
@@ -36,17 +37,45 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Nếu vị trí cuộn (scrollY) > 8px => xem như user đã cuộn xuống
     const onScroll = () => setIsScrolled(window.scrollY > 8);
-    // ⚡️ 3️⃣ Gọi hàm 1 lần ngay khi component vừa render
-    // để cập nhật trạng thái đúng (phòng trường hợp user load giữa trang)
     onScroll();
-    // lắng nghe cuộn, {passive} tối ưu hiệu năng
-    // Mỗi khi user cuộn trang, handleScroll() sẽ chạy → cập nhật isScrolled
     window.addEventListener("scroll", onScroll, { passive: true });
-    //🧹 Cleanup:
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // ✅ Hàm xử lý click anchor – dùng GSAP ScrollSmoother
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    href: string
+  ) => {
+    // Chặn hành vi mặc định của Next Link
+    // console.log("clicked:", href);
+    e.preventDefault();
+
+    const smoother = ScrollSmoother.get();
+    const target = document.querySelector(href) as HTMLElement | null;
+    // console.log("target:", target);
+
+    if (smoother && target) {
+      // Lấy chiều cao header để trừ offset chính xác
+      const header = document.querySelector("header") as HTMLElement | null;
+      const offset = header?.offsetHeight ?? 80;
+
+      // Dùng API offset() chính chủ của ScrollSmoother
+      const y = smoother.offset(target, "top", true) - offset;
+      // console.log("smoother:", smoother);
+      smoother.scrollTo(y, true, "power3.out");
+    } else if (target) {
+      // fallback nếu smoother chưa load
+      const offset =
+        (document.querySelector("header") as HTMLElement)?.offsetHeight ?? 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+
+    setIsOpen(false);
+  };
+
   return (
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-colors duration-300 ${
@@ -59,19 +88,21 @@ const Header = () => {
         <Link href="/" className="font-extrabold">
           <Sigma size={40} color="#7e22ce" strokeWidth={3} />
         </Link>
+
         {/* Desktop */}
         <nav className="hidden md:flex space-x-10 font-medium text-white">
-          {navData.map((item) => {
-            return (
-              <Link
-                href={item.link}
-                className="hover:text-[#a855f7] transition duration-300"
-                key={item.id}
-              >
-                {item.title}
-              </Link>
-            );
-          })}
+          {navData.map((item) => (
+            <Link
+              href={item.link}
+              key={item.id}
+              scroll={false}
+              prefetch={false}
+              onClick={(e) => handleAnchorClick(e, item.link)}
+              className="hover:text-[#a855f7] transition duration-300"
+            >
+              {item.title}
+            </Link>
+          ))}
         </nav>
 
         <button
@@ -85,19 +116,19 @@ const Header = () => {
       {/* Mobile */}
       {isOpen && (
         <div className="md:hidden px-6 pb-4">
-          {navData.map((item) => {
-            return (
-              <div className="flex flex-col gap-3" key={item.id}>
-                <Link
-                  href={item.link}
-                  className="hover:text-[#a855f7] transition duration-300"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.title}
-                </Link>
-              </div>
-            );
-          })}
+          {navData.map((item) => (
+            <div className="flex flex-col gap-3" key={item.id}>
+              <Link
+                href={item.link}
+                scroll={false}
+                prefetch={false}
+                onClick={(e) => handleAnchorClick(e, item.link)}
+                className="hover:text-[#a855f7] transition duration-300"
+              >
+                {item.title}
+              </Link>
+            </div>
+          ))}
         </div>
       )}
     </header>

@@ -30,7 +30,7 @@ const ExperienceData = [
 
 const WorkExperience = () => {
   return (
-    <section id="about" className="relative pt-24">
+    <section className="relative pt-24">
       <div
         className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 w-[90vw] sm:w-[760px] md:w-[1000px] h-[280px] sm:h-[380px] md:h-[520px] opacity-40 blur-3xl"
         style={{
@@ -38,7 +38,11 @@ const WorkExperience = () => {
             "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(168,85,247,0.6) 0%, rgba(126,34,206,0.0)80%)",
           borderRadius: "50% 50% 60% 60%",
         }}
-      ></div>
+      />
+      <p className="text-2xl md:text-3xl font-semibold text-white/90 mb-10">
+        Work Experience
+      </p>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 md:gap-8">
         {ExperienceData.map((item) => (
           // Cards wrapper
