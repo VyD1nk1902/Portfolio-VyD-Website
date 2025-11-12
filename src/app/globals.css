@@ -19,7 +19,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -27,6 +27,18 @@ body {
   color: var(--foreground);
   font-family: "Be Vietnam Pro", sans-serif;
   min-height: 100vh;
+}
+
+/* Ẩn tràn ngang chỉ ở màn hình nhỏ */
+@media (max-width: 1000px) {
+  .smooth-wrapper {
+    overflow-x: hidden;
+  }
+}
+
+/* Mặc định desktop giữ nguyên để ScrollSmoother hoạt động */
+.smooth-wrapper {
+  overflow: visible;
 }
 
 /* * {
