@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SmoothScrollWrapper from "@/components/Scroll/ScrollSmoothWrapper";
+import ConsoleSignature from "@/components/ConsoleSignature";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </SmoothScrollWrapper>
+        <ConsoleSignature />
       </body>
     </html>
   );
