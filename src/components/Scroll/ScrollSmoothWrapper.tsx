@@ -33,30 +33,30 @@ export default function SmoothScrollWrapper({
 
     (window as any).ScrollSmoother = ScrollSmoother;
 
-    // ✅ Anchor click fix (dùng offset thật của GSAP)
-    const onClick = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement)?.closest(
-        'a[href^="#"]'
-      ) as HTMLAnchorElement | null;
-      if (!el) return;
-      const href = el.getAttribute("href");
-      if (!href || href === "#") return;
+    // // ✅ Anchor click fix (dùng offset thật của GSAP)
+    // const onClick = (e: MouseEvent) => {
+    //   const el = (e.target as HTMLElement)?.closest(
+    //     'a[href^="#"]'
+    //   ) as HTMLAnchorElement | null;
+    //   if (!el) return;
+    //   const href = el.getAttribute("href");
+    //   if (!href || href === "#") return;
 
-      const target = document.querySelector(href) as HTMLElement | null;
-      if (!target) return;
+    //   const target = document.querySelector(href) as HTMLElement | null;
+    //   if (!target) return;
 
-      e.preventDefault();
+    //   e.preventDefault();
 
-      const y = smoother.offset(target, "top", true) - headerOffset;
-      smoother.scrollTo(y, true, "power2.out");
-    };
+    //   const y = smoother.offset(target, "top", true) - headerOffset;
+    //   smoother.scrollTo(y, true, "power2.out");
+    // };
 
-    document.addEventListener("click", onClick, { passive: false });
+    // document.addEventListener("click", onClick, { passive: false });
 
     ScrollTrigger.refresh();
 
     return () => {
-      document.removeEventListener("click", onClick);
+      // document.removeEventListener("click", onClick);
       smoother.kill();
     };
   }, [headerOffset]);
